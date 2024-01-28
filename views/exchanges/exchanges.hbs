@@ -1,0 +1,17 @@
+<p>Exchanges</p>
+
+{{#each allExchanges}}
+<hr>
+<div>
+    <a href="/{{this._id}}">
+        <h3>{{this.name}}</h3>
+    </a>
+    <h6>
+      <img src="{{this.image}}" style="height: 150px">
+    </h6>
+    <h6>
+      Cryptos HERE    
+    </h6>
+</div>
+{{/each}}
+<hr>

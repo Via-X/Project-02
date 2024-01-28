@@ -1,6 +1,5 @@
 Project 02 - Coin Tracker
-This application will allow users to tracker the gains and loss of cryptos currencies.
-
+This application will allow users to track the gains and loss of cryptos currencies.
 
 
 Model 1

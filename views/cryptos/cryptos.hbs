@@ -1,0 +1,28 @@
+<p>Cryptos</p>
+
+
+{{#each allCryptos}}
+<hr>
+<div>
+    <a href="/{{this._id}}">
+        <h3>{{this.name}}</h3>
+    </a>
+    <h6>
+      <img src="{{this.image}}" style="height: 150px">
+    </h6>
+    <h6>
+      Current Price: {{this.currentPrice}}      
+    </h6>
+    <h6> 
+      {{!-- Exchanges {{this.exchanes}} --}}
+    </h6>
+
+    {{!-- <h6>email: {{this.email}}</h6> 
+    <h6>Admin Role: {{this.admin}}</h6>
+    <h6>Ready Only Role: {{this.readyonly}}</h6>
+    <h6>Standard User Role: {{this.standarduser}}</h6> --}}
+    
+
+</div>
+{{/each}}
+<hr>

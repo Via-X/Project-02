@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>{{appTitle}}</title>
+      <link rel="stylesheet" href="/stylesheets/style.css" />
+   </head>
+
+   <body>
+      <div class="message">
+      {{#if errorMessage}}
+          <h3>{{errorMessage}}</h3>
+      {{/if}}
+      {{#if successMessage}}
+          <h3>{{successMessage}}</h3>
+      {{/if}}
+      </div>
+      <div class="layout">  
+      <a href="/signup"class="link"> Signup </a>
+      {{#unless theUser}}
+        <a href="/login" class="link"> Login </a>
+      {{/unless}}
+    
+      <a href="/userdash" class="link"> Dashboard </a>
+      <a href="/cryptos" class="link"> Cryptos </a>
+      <a href="/exchanges" class="link"> Exchanges </a>
+      </div>
+
+      {{#if theUser}}
+      <form action="/logout" method="post">
+        <button>Logout</button>
+      </form>
+      {{/if}}
+
+      {{#if theUser}}
+      <h3>Welcome, {{theUser.username}}</h3>
+      {{/if}}
+
+      {{{body}}}
+      {{!-- {{#if theUser.admin}} --}}
+         <a href="/users">Admin Console</a>
+         <a href="/cryptos/create">Add Crypto</a>
+         <a href="/exchanges/create">Add Exchanges</a>
+      {{!-- {{/if}} --}}
+      <script src="/js/script.js"></script>
+   </body>
+
+</html>
