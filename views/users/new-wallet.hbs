@@ -1,0 +1,30 @@
+<h2>Add Wallet</h2>
+<h6>{{dbUser._id}}</h6>
+<form action="/users/{{dbUser._id}}" method="post">
+
+  <label>Crypto Name</label>
+  <select name="crypto">
+    
+    {{#each allCryptos}}
+      <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+
+  <label>Exchange</label>
+  <select name="exchange">   
+    {{#each allExchanges}}
+      <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+
+  <label>Amount</label>
+   <input type="number" name="amount" value="{{dbUser.wallets.amount}}"/>
+
+  <label>Purchase Price</label>
+  <input type="number" name="purchasePrice" value="{{dbUser.wallets.purchasePrice}}"/>
+
+
+  <button type="submit">
+    Save
+  </button>
+</form>

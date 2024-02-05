@@ -37,12 +37,16 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId, 
         ref: "Crypto"
       },
+      exchange: {
+        type: Schema.Types.ObjectId,
+        ref: "Exchange"
+      },
       amount: {
         type: Number,
         required: true
       },
       purchasePrice: {
-        type: Date,
+        type: Number,
         required: true
       } 
     }]

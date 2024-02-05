@@ -1,0 +1,23 @@
+<h2>Exchanges Details</h2>
+
+<div>
+    <a href="/exchanges/{{_id}}">
+      <h3>{{name}}</h3>
+    </a>
+    <img src="{{image}}" style="height: 150px">
+  
+
+    {{#each cryptos}}
+    <h6>Cryptos: {{this.name}}</h6>
+    {{/each}}
+  </div>
+
+  {{#if theUser.admin}}
+  <a href="/exchanges/{{_id}}/edit">Edit Exchange</a>
+
+  <form action="/exchanges/{{_id}}/delete" method="post">
+    <button type="submit">Delete Exchange</button>
+  </form>
+  {{/if}}
+</div>
+<hr />

@@ -1,0 +1,23 @@
+<h2>Crypto Details</h2>
+
+<div>
+    <a href="/cryptos/{{_id}}">
+      <h3>{{name}}</h3>
+    </a>
+    <img src="{{image}}" style="height: 150px">
+    <h6>Current Price: {{currentPrice}}</h6>
+
+    {{#each exchanges}}
+    <h6>Exchange: {{this.name}}</h6>
+    {{/each}}
+  </div>
+
+  {{#if theUser.admin}}
+  <a href="/cryptos/{{_id}}/edit">Edit Crypto</a>
+
+  <form action="/cryptos/{{_id}}/delete" method="post">
+    <button type="submit">Delete Cryptos</button>
+  </form>
+  {{/if}}
+</div>
+<hr />

@@ -1,22 +1,45 @@
 <h1>Dashboard</h1>
 
-<hr>
+<hr />
 <div>
-    <a href="/{{dbUser._id}}">
-        <h3>{{dbUser.username}}</h3>
-    </a>
-    <h6>email: {{dbUser.email}}</h6> 
-    <h6>Admin Role: {{dbUser.admin}}</h6>
-    <h6>User Role: {{dbUser.user}}</h6>
-    <h6>Guest Role: {{dbUser.guest}}</h6> 
+  <a href="/{{dbUser._id}}">
+    <h3>{{dbUser.username}}</h3>
+  </a>
+  <h6>email: {{dbUser.email}}</h6>
+  <h6>Admin Role: {{dbUser.admin}}</h6>
+  <h6>User Role: {{dbUser.user}}</h6>
+  <h6>Guest Role: {{dbUser.guest}}</h6>
 
-    {{#each dbUser.wallets}}
+  {{#each dbUser.wallets}}
     <hr />
     <div>
-       
+      <h6>Crypto:
+        <span>{{this.crypto}}</span>
+        <button id="edit-crypto">Edit</button>
+      </h6>
+
+      <h6>
+        Exchange:
+        <span>{{this.exchange}}</span>
+        <button id="edit-exchange">Edit</button>
+      </h6>
+
+      <h6>
+        Amount:
+        <span>{{this.amount}}</span>
+        <button id="edit-amount">Edit</button>
+      </h6>
+
+      <h6>
+        Purchase Price:
+        <span>{{this.purchasePrice}}</span>
+        <button id="edit-purchaasPrice">Edit</button>
+      </h6>
 
     </div>
-    {{/each}}
+  {{/each}}
+
+  <a href="/users/{{dbUser._id}}">Add Wallet</a>
 
 </div>
-<hr>
+<hr />

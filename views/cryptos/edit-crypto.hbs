@@ -1,0 +1,30 @@
+<h2>Edit Crypto</h2>
+
+<form action="/cryptos/{{dbCrypto._id}}" method="post">
+{{!-- <form action="/cryptos" method="post"></form> --}}
+
+  <label>Crypto Name</label>
+  <input type="text" name="name" value="{{dbCrypto.name}}"/>
+
+  <label>Current Price</label>
+  <input type="text" name="currentPrice" value="{{dbCrypto.currentPrice}}" />
+
+  <label>Image</label>
+  <input type="text" name="image" value="{{dbCrypto.image}}"/>
+
+  <label>Exchanges</label>
+  <select name="exchanges" multiple>
+    
+    {{#each allExchanges}}
+    {{#if isinthelist}}
+      <option value="{{this._id}}" selected>{{this.name}}</option>
+      {{else}}
+      <option value="{{this._id}}">{{this.name}}</option>
+    {{/if}}
+    {{/each}}
+  </select>
+
+  <button type="submit">
+    Save
+  </button>
+</form>
