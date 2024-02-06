@@ -33,13 +33,19 @@ const userSchema = new Schema(
       default: false
     },
     wallets: [{
-      crypto: {
+      cryptoId: {
         type: Schema.Types.ObjectId, 
         ref: "Crypto"
       },
-      exchange: {
+      cryptoName: {
+        type: String,
+      },
+      exchangeId: {
         type: Schema.Types.ObjectId,
         ref: "Exchange"
+      },
+      exchangeName: {
+        type: String,
       },
       amount: {
         type: Number,

@@ -4,16 +4,15 @@
 
   <label>Crypto Name</label>
   <select name="crypto">
-    
     {{#each allCryptos}}
-      <option value="{{this._id}}">{{this.name}}</option>
+      <option value="{{this._id}},{{this.name}}">{{this.name}}</option>
     {{/each}}
   </select>
 
   <label>Exchange</label>
   <select name="exchange">   
     {{#each allExchanges}}
-      <option value="{{this._id}}">{{this.name}}</option>
+      <option value="{{this._id}},{{this.name}}">{{this.name}}</option>
     {{/each}}
   </select>
 

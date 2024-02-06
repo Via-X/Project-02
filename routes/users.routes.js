@@ -134,26 +134,31 @@ router.get("/users/:theId", (req, res, next) => {
  
 });
 
+
 //Route POST to add wallet to User Account
-router.post("/users/:theId", async (req, res, next) => {
-  try {
-    const newWallet = {
-      crypto: req.body.crypto,
-      exchange: req.body.exchange,
-      amount: req.body.amount,
-      purchasePrice: req.body.purchasePrice,
-    }
-    const currentUser = await User.findByIdAndUpdate(
-      req.params.theId, {wallets: newWallet},
-      { new: true }
-    );
+router.post("/users/:theId", (req, res, next) => {
+  User.findById(req.params.theId)
+  .then((dbUser) => { 
+      const newWallet = {
+        cryptoId: req.body.crypto.split(',')[0],
+        cryptoName: req.body.crypto.split(',')[1],
+        exchangeId: req.body.exchange.split(',')[0],
+        exchangeName: req.body.exchange.split(',')[1],
+        amount: req.body.amount,
+        purchasePrice: req.body.purchasePrice,
+      }
+      console.log(newWallet);
+    dbUser.wallets.push(newWallet);
+    dbUser.save();
     req.flash("successMessage", "Account successfully updated.");
     res.redirect("/userdash");
-  } catch (err) {
+  })
+  .catch ((error) => {
     req.flash("errorMessage", "MAJOR ERROR" + err);
     next(err);
-  }
+  })
 });
+
 
 // //DISPLAY AND UPDATE USER DETAILS
 // //Route to display User Account details
