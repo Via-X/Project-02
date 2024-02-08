@@ -4,6 +4,8 @@ const User = require("../models/User.model");
 const Crypto = require("../models/Crypto.model");
 const Exchange = require("../models/Exchange.model");
 const bcryptjs = require("bcryptjs");
+const nodemailer = require("nodemailer");
+const transporter = require("../config/nodemailer");
 
 //LOGOUT
 //Route POST to logout
@@ -36,13 +38,13 @@ router.post("/signup", async (req, res, next) => {
       password: hashedPassword,
     });
 
-    // const info = await transporter.sendMail({
-    //   from: "movies_celebs_appe@mail.com", // sender address
-    //   to: email,
-    //   subject: "Thank you for signing up", // Subject line
-    //   text: "Thank you for signing up", // plain text body
-    //   html: `<b>Thank you for signing up, ${username}</b>`, // html body
-    // });
+    const info = await transporter.sendMail({
+      from: "prjoect2@mail.com", // sender address
+      to: email,
+      subject: "Thank you for signing up", // Subject line
+      text: "Thank you for signing up", // plain text body
+      html: `<b>Thank you for signing up, ${username}</b>`, // html body
+    });
 
     res.redirect("/login");
   } catch (err) {
@@ -160,32 +162,48 @@ router.post("/users/:theId", (req, res, next) => {
 });
 
 
-// //DISPLAY AND UPDATE USER DETAILS
-// //Route to display User Account details
-// router.get("/:theId", (req, res, next) => {
-//   User.findById(req.params.theId)
-//     .then((dbUser) => {
-//       res.render("users/new-wallet", dbUser);
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
+//DISPLAY AND UPDATE USER DETAILS
+//Route to display User Account details
+router.get("/:theId", (req, res, next) => {
+  User.findById(req.params.theId)
+    .then((dbUser) => {
+      res.render("users/details-user", dbUser);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
-// router.post("/:theId", async (req, res, next) => {
-//   try{
-//       const currentUser = await User.findByIdAndUpdate(req.params.theId, {
-//           email: req.body.email,
-//           admin: Boolean(req.body.admin),
-//           user: Boolean(req.body.user),
-//           guest: Boolean(req.body.guest)
-//       }, {new: true})
-//       req.flash("successMessage", "Account successfully updated.");
-//       res.redirect(`/${req.params.theId}`);
-//   } catch(err) {
-//       req.flash("errorMessage", "MAJOR ERROR" + err);
-//       next(err);
-//   };
-// });
+router.post("/:theId", async (req, res, next) => {
+  try{
+      const currentUser = await User.findByIdAndUpdate(req.params.theId, {
+          email: req.body.email,
+          admin: Boolean(req.body.admin),
+          user: Boolean(req.body.user),
+          guest: Boolean(req.body.guest)
+      }, {new: true})
+      req.flash("successMessage", "Account successfully updated.");
+      res.redirect(`/${req.params.theId}`);
+  } catch(err) {
+      req.flash("errorMessage", "MAJOR ERROR" + err);
+      next(err);
+  };
+});
+
+
+//Delete
+//Route to delete a User
+router.post("/:theId/delete", (req, res, next) => {
+    User.findByIdAndDelete(req.params.theId)
+    .then((dbCrypto) => {
+      req.flash("successMessage", "User successfully removed");
+      res.redirect("/users");
+    })
+    .catch((error) => {
+      req.flash("errorMessage", "Something went wrong with removing Crypto.");
+      next(error);
+    });
+});
+
 
 module.exports = router;

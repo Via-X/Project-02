@@ -1,0 +1,37 @@
+
+<h2>User Details</h2>
+
+<form action="/{{_id}}" method="post">
+
+    <a href="/{{_id}}">
+      <h3>{{username}}</h3>
+    </a>
+
+    <label> Email </label>
+    <input type="text" name="email" value="{{email}}" />
+
+        {{!-- <label> Password </label>
+    <input type="text" name="password" value="{{password}}" /> --}}
+    
+    <label>Admin Role Enabled:</label>
+    <input type="checkbox" name="admin" value="{{admin}}" {{#if admin}}checked{{/if}}   />
+
+     <label>Standard User Role Enabled:</label>
+     <input type="checkbox" name="user" value="{{user}}" {{#if user}}checked{{/if}}  />
+
+     <label>Guest Role Enabled:</label>
+     <input type="checkbox" name="guest" value="{{guest}}" {{#if guest}}checked{{/if}}  />
+   
+
+   <button type="submit">
+    Save
+  </button>
+</form>
+
+  {{!-- <a href="/users/{{_id}}/edit">Edit this User Account</a> --}}
+
+  <form action="/{{_id}}/delete" method="post">
+    <button type="submit">Delete this User Account</button>
+  </form>
+</div>
+<hr />
