@@ -57,3 +57,16 @@ a {
 #movie-id{
   display: none;
 }
+
+.crypto{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button{
+  padding: 5px 10px;
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
